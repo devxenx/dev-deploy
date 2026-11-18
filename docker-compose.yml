@@ -1,0 +1,17 @@
+services:
+  devxenx-cloud:
+    build: .
+    container_name: devxenx-cloud-controller
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      PORT: "5000"
+      HOST_UPLOADS_PATH: /srv/devxenxcloud/upload_bots
+    ports:
+      - "5000:5000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /srv/devxenxcloud/upload_bots:/app/upload_bots
+      - /srv/devxenxcloud/inf:/app/inf
+    init: true
+    
